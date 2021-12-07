@@ -3,8 +3,15 @@ const path = require('path');
 const copyDir = require('copy-folders');
 
 async function copyTemplateFiles(options) {
-	console.log('hey');
 	return copyDir(options.templateDirectory, options.targetDirectory);
+}
+
+async function MakeDirectory(targetDir) {
+	try {
+		fs.mkdirSync(process.cwd() + '\\' + targetDir);
+	} catch (err) {
+		console.log('MakeDir ', err);
+	}
 }
 
 const createCompos = async options => {
@@ -23,14 +30,25 @@ const createCompos = async options => {
 	);
 	options.templateDirectory = templateDir;
 
+	// check template directory
 	try {
 		console.log('Checking target Directory ...');
 		await fs.accessSync(templateDir, fs.constants.R_OK);
 	} catch (err) {
 		console.error('%s Invalid template name');
 		console.log('templateDirectory: ', options.templateDirectory);
-		console.log('targetDirectory: ', options.targetDirectory);
 		process.exit(1);
+	}
+
+	// check template directory
+	try {
+		console.log('Checking target Directory ...');
+		await fs.accessSync(options.targetDirectory, fs.constants.R_OK);
+	} catch (err) {
+		console.error('%s Invalid target directory name');
+
+		MakeDirectory('src');
+		MakeDirectory('src\\components');
 	}
 
 	console.log('Copy project files');
