@@ -2,19 +2,40 @@ const inquirer = require('inquirer');
 
 const choices = ['JavaScript', 'TypeScript', 'React'];
 
+// function to check if the input template name valid or no
+function checkTemplate(input, flags) {
+	return {
+		...flags,
+		skipPrompts: flags['yes'] || false,
+		runInstall: flags['install'] || false
+	};
+}
+
 // function to handle missing options
 async function promptForMissingOptions(options) {
 	const defaultTemplate = 'JavaScript';
+	const defaultName = 'My_Component';
+
 	if (options.skipPrompts) {
 		return {
 			...options,
+			templateName: options.templateName || defaultName,
 			template: options.template || defaultTemplate
 		};
 	}
 
 	// Questions when missing an option
 	const questions = [];
-	if (!options.template || options.template === '') {
+	if (!options.templateName) {
+		questions.push({
+			type: 'input',
+			name: 'templateName',
+			message: "Please type your component's name ",
+			default: defaultName
+		});
+	}
+
+	if (!options.template) {
 		questions.push({
 			type: 'list',
 			name: 'template',
@@ -37,38 +58,9 @@ async function promptForMissingOptions(options) {
 	const answers = await inquirer.prompt(questions);
 	return {
 		...options,
+		templateName: options.templateName || answers.templateName,
 		template: options.template || answers.template,
 		git: options.git || answers.git
-	};
-}
-
-// function to check if the input template name valid or no
-function checkTemplate(input, flags) {
-	let template = '';
-
-	console.log('Checking template name ...');
-
-	for (let i = 0; i < choices.length; i++) {
-		const ele = choices[i];
-		const inputEle = input[0].toLowerCase();
-
-		if (input[0] === undefined || inputEle != ele.toLowerCase()) {
-			// nothing to do here
-		} else {
-			console.log(ele + ' template is found');
-			template = ele;
-		}
-	}
-
-	if (template === '') {
-		console.log('Invalid template name !');
-	}
-
-	return {
-		...flags,
-		template: template,
-		skipPrompts: flags['yes'] || false,
-		runInstall: flags['install'] || false
 	};
 }
 
