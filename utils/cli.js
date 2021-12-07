@@ -37,7 +37,7 @@ const commands = {
 };
 
 const helpText = meowHelp({
-	name: `compo-cli`,
+	name: `compos-cli`,
 	flags,
 	commands
 });

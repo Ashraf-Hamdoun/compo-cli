@@ -5,7 +5,7 @@ const unhandled = require('cli-handle-unhandled');
 module.exports = ({ clear = true }) => {
 	unhandled();
 	welcome({
-		title: ` Compo CLI `,
+		title: ` Compos CLI `,
 		tagLine: `by Ashraf Hamdoun`,
 		description: pkg.description,
 		version: pkg.version,

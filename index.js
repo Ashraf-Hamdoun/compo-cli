@@ -10,7 +10,7 @@
  */
 
 /**
- * compo-cli
+ * compos-cli
  * CLI for react-native components
  *
  * @author Ashraf Hamdoun <ashraf-hamdoun.000webhostapp.com>

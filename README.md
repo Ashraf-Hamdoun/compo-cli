@@ -1,4 +1,4 @@
-# compo-cli
+# compos-cli
 
     - This CLI is for creating some materials to use in react-native projects,
     I didn't finish it yet. But I work on it, It'll be very helpful.
@@ -11,11 +11,11 @@
 ## Installation
 
     - Use the following command to install it:
-        - npm i -g compo-cli --save
+        - npm i -g compos-cli --save
 
 ## Using
 
-    compo-cli <template-name> --git
+    compos-cli <template-name> --git
 
 ## What you'll have
 
