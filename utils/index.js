@@ -14,7 +14,7 @@ async function root() {
 	input.includes(`help`) && cli.showHelp(0);
 
 	// handle missing falgs
-	let allFlags = await handleFlags(input, flags);
+	let allFlags = await handleFlags(flags);
 
 	debug && log(allFlags);
 

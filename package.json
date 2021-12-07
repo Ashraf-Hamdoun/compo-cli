@@ -1,7 +1,7 @@
 {
 	"name": "compos-cli",
 	"description": "Compos CLI is for creatings react-native components",
-	"version": "1.2.5",
+	"version": "1.0.6",
 	"license": "ISC",
 	"bin": {
 		"compos": "index.js"

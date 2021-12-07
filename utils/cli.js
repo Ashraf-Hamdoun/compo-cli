@@ -29,6 +29,11 @@ const flags = {
 		type: `boolean`,
 		alias: 'i',
 		desc: `Install dependencies`
+	},
+	template: {
+		type: `string`,
+		alias: 't',
+		desc: "Component's template"
 	}
 };
 

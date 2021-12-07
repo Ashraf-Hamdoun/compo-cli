@@ -35,8 +35,7 @@ const createCompos = async options => {
 		console.log('Checking target Directory ...');
 		await fs.accessSync(templateDir, fs.constants.R_OK);
 	} catch (err) {
-		console.error('%s Invalid template name');
-		console.log('templateDirectory: ', options.templateDirectory);
+		console.error('%s Invalid template "' + options.template + '"');
 		process.exit(1);
 	}
 

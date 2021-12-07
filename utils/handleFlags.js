@@ -3,7 +3,7 @@ const inquirer = require('inquirer');
 const choices = ['JavaScript', 'TypeScript', 'React'];
 
 // function to check if the input template name valid or no
-function checkTemplate(input, flags) {
+function checkTemplate(flags) {
 	return {
 		...flags,
 		skipPrompts: flags['yes'] || false,
@@ -26,7 +26,7 @@ async function promptForMissingOptions(options) {
 
 	// Questions when missing an option
 	const questions = [];
-	if (!options.templateName) {
+	if (!options.templateName || options.templateName === '') {
 		questions.push({
 			type: 'input',
 			name: 'templateName',
@@ -35,7 +35,7 @@ async function promptForMissingOptions(options) {
 		});
 	}
 
-	if (!options.template) {
+	if (!options.template || options.template === '') {
 		questions.push({
 			type: 'list',
 			name: 'template',
@@ -64,8 +64,8 @@ async function promptForMissingOptions(options) {
 	};
 }
 
-async function handleFlags(input, flags) {
-	let options = await checkTemplate(input, flags);
+async function handleFlags(flags) {
+	let options = await checkTemplate(flags);
 
 	options = await promptForMissingOptions(options);
 	return options;
